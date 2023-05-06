@@ -1,0 +1,32 @@
+﻿@model DuLichV2.Models.EF.Tour
+@using DuLichV2.Common
+
+@if (Model != null)
+{
+    <div style="margin-top: 30px;" class="d-inline-flex flex-column justify-content-center align-items-center">
+        <div style="width: 50%; height: 380px; cursor:pointer; border: 1px solid #c0c0c0" class="@Model.TourCategory.Alias">
+            <div class="product discount">
+                <div class="product_image">
+                    <img src="@Model.Image" alt="">
+                </div>
+                <div class="favorite favorite_left"></div>
+                @if (Model.PriceSale != Model.Price)
+                {
+                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                }
+                <div class="product_info">
+                    <h6 class="product_name"><a href="/chi-tiet/@Model.Alias-t@(Model.Id)">@Model.Name</a></h6>
+                    @if (Model.PriceSale != Model.Price)
+                    {
+                        <div class="product_price">@Common.FormatNumber(Model.PriceSale, 0) đ<span>@Common.FormatNumber(Model.Price, 0) đ</span></div>
+                    }
+                    else
+                    {
+                        <div class="product_price">@Common.FormatNumber(Model.Price, 0) đ</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 140px; background: #1e1e27; margin-top: 10px; " class="red_button"><a href="/tour">Xem thêm</a></div>
+}

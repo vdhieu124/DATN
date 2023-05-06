@@ -1,0 +1,48 @@
+﻿@model DuLichV2.Models.EF.News
+@{
+    ViewBag.Title = "Chi tiết tin tức";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/categories_responsive.css">
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active"><a href="/News"><i class="fa fa-angle-right" aria-hidden="true"></i>Tin tức</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Chi tiết tin tức</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Main Content -->
+
+            @if (Model != null)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 style="color: #159799;">@Model.Title</h2>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Raw(Model.Detail)
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/Assets/js/categories_custom.js"></script>
+}
+

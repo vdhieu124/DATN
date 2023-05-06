@@ -1,0 +1,132 @@
+﻿<!-- Sidebar -->
+<div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="~/Uploads/images/Banner/logoCompany2.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="#" class="d-block">Trang quản trị</a>
+        </div>
+    </div>
+
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+            <li class="nav-item">
+                <a href="/Admin/Home" class="nav-link">
+                    <i class="nav-icon fas fa-home"></i>
+                    <p>
+                        Home
+                    </p>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Category" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
+                    <p>
+                        Menu
+                    </p>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Places" class="nav-link">
+                    <i class="nav-icon fas fa-map-marked-alt"></i>
+                    <p>
+                        Place
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Vehicles" class="nav-link">
+                    <i class="nav-icon fas fa-plane"></i>
+                    <p>
+                        Vehicle
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Hotels" class="nav-link">
+                    <i class="nav-icon fas fa-hotel"></i>
+                    <p>
+                        Hotel
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/News" class="nav-link">
+                    <i class="nav-icon fas fa-newspaper"></i>
+                    <p>
+                        Event - news
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Tours" class="nav-link">
+                    <i class="nav-icon fas fa-tasks"></i>
+                    <p>
+                        Quản lý Tour
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/BookTour" class="nav-link">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>
+                        Order Tour
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Role" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        Phân quyền
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Account" class="nav-link">
+                    <i class="nav-icon fas fa-user-lock"></i>
+                    <p>
+                        Quản lý tài khoản
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Statistic" class="nav-link">
+                    <i class="nav-icon fas fa-chart-bar"></i>
+                    <p>
+                        Thống kê
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logOffForm').submit()" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>
+                        Đăng xuất
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->
+
+@if (Request.IsAuthenticated)
+{
+    <div style="display:none;">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id="logOffForm"}))
+        {
+            @Html.AntiForgeryToken()
+        }
+    </div>
+
+}

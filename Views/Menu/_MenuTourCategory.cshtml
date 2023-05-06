@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DuLichV2.Models.EF.TourCategory>
+
+@if (Model != null && Model.Any())
+{
+
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6">
+                        <div class="banner_item align-items-center" style="background-image:url(Uploads/images/Banner/bannerCategory.jpg)">
+                            <div class="banner_category">
+                                <a href="/danh-muc-tour/@item.Alias-@(item.Id)">@item.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

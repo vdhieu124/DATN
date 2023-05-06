@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Giới thiệu về chúng tôi";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/categories_responsive.css">
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Giới thiệu</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Main Content -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="section_title">
+                        <h2>Giới thiệu về chúng tôi</h2>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <p style="font-style: italic; color: red; text-align:center">" Sự chuyên nghiệp mang lại cảm xúc tuyệt vời <br /> cho khách hàng và những giá trị gia tăng cho khách sau mỗi chuyến đi!"</p>
+                    <h5><b>Tên công ty:</b> Công ty du lịch HIEU (HIEU Travel)</h5>
+                    <h5><b>Ngày thành lập:</b> 01/01/2023</h5>
+                    <h5><b>Mã số thuế:</b> 0012957834122</h5>
+                    <h5><b>Người điều hành:</b> Mr. Vuong Hieu</h5>
+                    <h5><b>Logo công ty:</b></h5>
+                    <img style="margin-left: 50%; transform: translateX(-50%);" src="~/Uploads/images/Banner/logoCompany2.png" width="300px" alt="Logo công ty" />
+
+                    <h5><b>Đối tác của HIEU Travel:</b></h5>
+                    <img style="margin-left: 50%; transform: translateX(-50%); border: 1px solid #c0c0c0" src="~/Uploads/images/Banner/doitac.jpg" width="200px" alt="Logo đối tác" />
+                    <br />
+                    <hr />
+                    <h3 style="text-align:center">Hình ảnh khách đi tour</h3>
+                    <p style="font-style: italic; color: red; text-align:center">Hãy cùng chúng tôi chia sẻ khoảnh khắc của bạn</p>
+
+                </div>
+            </div>
+            <div class="row owl-carousel about">
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T7_002.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T8_001.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T8_002.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T11_003.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T17_001.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T19_001.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T19_003.jpg" width="260px" /></div>
+                <div style="margin: 0 3px;"><img src="~/Uploads/images/Tour/T18_003.jpg" width="260px" /></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script>
+    var owl = $('.owl-carousel.about');
+    owl.owlCarousel({
+        items: 4,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 1000,
+        autoplayHoverPause: false
+    });
+</script>
+@section scripts{
+    <script src="~/Content/Assets/js/categories_custom.js"></script>
+}

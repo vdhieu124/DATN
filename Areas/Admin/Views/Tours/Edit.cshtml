@@ -1,0 +1,255 @@
+﻿@model DuLichV2.Models.EF.Tour
+@{
+    ViewBag.Title = "Cập nhật tour";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Tours" class="nav-link">Tour</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Cập nhật</a>
+        </li>
+    </ul>
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cập nhật tour</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Tour</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin cập nhật tour</h3>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("Edit", "Tours", FormMethod.Post, new { }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(x => x.Id)
+                        @Html.HiddenFor(x => x.CreatedDate)
+                        @Html.HiddenFor(x => x.Image)
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">SEO</a></li>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="active tab-pane" id="activity">
+                                        <div class="form-group">
+                                            <label for="">Tên tour</label>
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Tên tour" })
+                                            @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Mã tour</label>
+                                            @Html.TextBoxFor(x => x.TourCode, new { @class = "form-control", @placeholder = "Mã tour" })
+                                            @Html.ValidationMessageFor(x => x.TourCode, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Chi tiết tour</label>
+                                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
+                                            @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Thời gian tour</label>
+                                            @Html.TextBoxFor(x => x.Time, new { @class = "form-control", @placeholder = "Thời gian tour" })
+                                            @Html.ValidationMessageFor(x => x.Time, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Ngày khởi hành</label>
+                                            @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                            @Html.ValidationMessageFor(x => x.DepartureTime, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">Số chỗ trống</label>
+                                                    @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @placeholder = "Số chỗ trống" })
+                                                    @Html.ValidationMessageFor(x => x.Quantity, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">Giá công khai (Giá khách hàng)</label>
+                                                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @placeholder = "Giá công khai" })
+                                                    @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">Giá khuyến mãi</label>
+                                                    @Html.TextBoxFor(x => x.PriceSale, new { @class = "form-control", @placeholder = "Giá khuyến mãi" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">Giá gốc (Giá ban đầu)</label>
+                                                    @Html.TextBoxFor(x => x.OriginalPrice, new { @class = "form-control", @placeholder = "Giá gốc ban đầu" })
+                                                    @Html.ValidationMessageFor(x => x.OriginalPrice, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">Danh mục tour</label>
+                                                    @Html.DropDownListFor(x => x.TourCategoryId, ViewBag.TourCategory as SelectList, "-Chọn danh mục tour-", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.TourCategoryId, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">Địa điểm tour</label>
+                                                    @Html.DropDownListFor(x => x.PlaceId, ViewBag.Place as SelectList, "-Chọn địa điểm-", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.PlaceId, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="">Khách sạn</label>
+                                                    @Html.DropDownListFor(x => x.HotelId, ViewBag.Hotel as SelectList, "-Chọn khách sạn-", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.HotelId, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    <label for="">Phương tiện</label>
+                                                    @Html.DropDownListFor(x => x.VehicleId, ViewBag.Vehicle as SelectList, "-Chọn phương tiện-", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.VehicleId, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--checkbox-->
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(x => x.IsActive, new { @checked = "checked" })
+                                                    <label>Hiển thị</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(x => x.IsHot)
+                                                    <label>Hot</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(x => x.IsHome)
+                                                    <label>Trang chủ</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(x => x.IsSale)
+                                                    <label>Khuyến mãi</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+
+
+                                    <div class="tab-pane" id="settings">
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">SEO Title</label>
+                                                <div class="col-sm-10">
+                                                    @Html.TextBoxFor(x => x.SeoTitle, new { @class = "form-control", @placeholder = "Seo title" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">SEO Description</label>
+                                                <div class="col-sm-10">
+                                                    @Html.TextBoxFor(x => x.SeoDescription, new { @class = "form-control", @placeholder = "Seo description" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">SEO Keywords</label>
+                                                <div class="col-sm-10">
+                                                    @Html.TextBoxFor(x => x.SeoKeywords, new { @class = "form-control", @placeholder = "Seo keywords" })
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                            <div class="form-group">
+                                <a href="/Admin/Tours" class="btn btn-danger">Quay lại</a>
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+<link href="~/Content/Clients/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/Content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+
+            
+        });
+        
+
+    </script>
+    <script src="~/Scripts/jquery-ui-1.13.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+}
+

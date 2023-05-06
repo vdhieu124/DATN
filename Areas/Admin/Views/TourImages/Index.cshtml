@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DuLichV2.Models.EF.TourImage>
+@{
+    ViewBag.Title = "Ảnh tour";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<style>
+    .glImage{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .glImage li{
+        display: inline-block;
+        position: relative;
+        padding: 6px;
+    }
+    .glImage-content:nth-child(3n+4) {
+        clear: both;
+    }
+    .box-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+</style>
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Ảnh tour</h3>
+
+            <div class="card-tools">
+                
+                <input type="button" value="Tải ảnh" class="btn btn-success" onclick="BrowseServer();" />
+            </div>
+        </div>
+        <div class="card-body" style="padding: 0px">
+            <ul class="glImage">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <li class="glImage-content" id="trow_@item.Id">
+                            <img src="@item.Image" width="200" />
+                            <div class="box-btn">
+                                @if (!item.IsDefault)
+                                {
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"><i class="fa  fa-trash"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-success btnDefault">Avatar</a>
+                                }
+
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+<script>
+    function BrowseServer(field) {
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (fileUrl) {
+            AddImage(@ViewBag.TourId, fileUrl);
+        };
+        finder.popup();
+    }
+    function AddImage(id, url) {
+        $.ajax({
+            url: '/Admin/TourImages/AddImage',
+            type: 'POST',
+            data: { TourId : id, url : url },
+            success: function (rs) {
+                if (rs.success) {
+                    window.location.reload();
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        $('body').on('click', '.btnDelete', function () {
+            var id = $(this).data('id');
+            var conf = confirm('Bạn có muốn xóa ảnh này không?');
+            if (conf === true) {
+                $.ajax({
+                    url: '/Admin/TourImages/Delete',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            $('#trow_' + id).remove();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

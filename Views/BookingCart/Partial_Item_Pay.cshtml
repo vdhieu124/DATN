@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DuLichV2.Models.BookingCartItem>
+@using DuLichV2.Common
+
+@if (Model != null && Model.Any())
+{
+    <h3>TOUR ĐÃ CHỌN <span style="float: right;"><small>@Model.Count()</small></span></h3>
+    var i = 0;
+    var tongtien = decimal.Zero;
+    <div style="border: 1px solid #000000;">
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                tongtien += item.TotalPrice;
+                <tr>
+                    <td style="color: red;">@item.TourName</td>
+                    <td>@Common.FormatNumber(item.Price, 0)</td>
+                </tr>
+            }
+            <tr>
+                <td>Tổng tiền</td>
+                <td>@Common.FormatNumber(tongtien, 0)</td>
+            </tr>
+        </table>
+    </div>
+}

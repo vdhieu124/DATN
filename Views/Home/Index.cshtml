@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/main_styles.css">
+<div class="main_slider" style="background-image:url(../../Uploads/images/Banner/slider1.jpg)">
+    <div class="container fill_height">
+        <div class="row align-items-center fill_height">
+            <div class="col">
+                <div class="main_slider_content">
+                    <h4>Bùng nổ <b style="color: red;">SIÊU SALE</b> 2023</h4>
+                    <h1>Săn Tour giá tốt tại <b style="color: #159799;">HIEU</b><b style="color:#24475a">TRAVEL</b></h1>
+                    <div class="red_button shop_now_button"><a href="/tour">book now</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner -->
+@Html.Action("MenuTourCategory", "Menu")
+
+<!-- New Arrivals -->
+
+<div class="new_arrivals">
+    <div class="container">
+        @Html.Action("MenuArrival", "Menu")
+    </div>
+</div>
+<!-- Deal of the week -->
+<div class="deal_ofthe_week">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="deal_ofthe_week_img">
+                    <img src="~/Uploads/images/Banner/slider2.png" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 text-right deal_ofthe_week_col">
+                <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
+                    <div class="section_title">
+                        <h2>Xem nhiều nhất</h2>
+                    </div>
+                    @Html.Action("Partial_ItemsMaxView", "Tours")
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Best Sellers -->
+
+@Html.Action("Partial_ItemsSale", "Tours")
+<!-- Benefit -->
+
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>Giá cả</h6>
+                        <p>Luôn có mức giá tốt nhất</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>Đặt tour</h6>
+                        <p>Dễ dàng & nhanh chóng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-paypal" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>Thanh toán</h6>
+                        <p>An toàn & linh hoạt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>Hỗ trợ</h6>
+                        <p>Hotline & Trực tuyến 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blogs -->
+
+@Html.Action("Partial_News_Home", "News")

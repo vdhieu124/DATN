@@ -1,0 +1,128 @@
+﻿@model DuLichV2.Models.EF.BookTour
+@{
+    ViewBag.Title = "Chi tiết đơn đặt tour";
+}
+
+@section Naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/BookTour" class="nav-link">Danh sách đơn đặt tour</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Chi tiết đơn</a>
+        </li>
+    </ul>
+}
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Chi tiết đơn đặt tour</h3>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mã đơn</label>
+                        <p class="form-control">@Model.Code</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Người đặt tour</label>
+                        <p class="form-control">@Model.CustomerName</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p class="form-control">@Model.Email</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <p class="form-control">@Model.Phone</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ngày đặt</label>
+                        <p class="form-control">@Model.CreatedDate.ToString("dd/MM/yyyy")</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tổng tiền</label>
+                        <p style="color:red;" class="form-control">@DuLichV2.Common.Common.FormatNumber(Model.SubTotal, 0) đ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <p class="form-control">@(Model.TypePayment == 1 ? "Chờ thanh toán":"Đã thanh toán")</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2>Danh sách tour đã đặt</h2>
+                </div>
+                <div class="col-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên tour</th>
+                                <th>Mã tour</th>
+                                <th>Giá</th>
+                                <th>Số người</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @foreach (var item in Model.BookTourDetails)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@item.Tour.Name</td>
+                                    <td>@item.Tour.TourCode</td>
+                                    <td>@DuLichV2.Common.Common.FormatNumber(item.Price,0)</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@DuLichV2.Common.Common.FormatNumber((item.Price * item.Quantity), 0) đ</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->

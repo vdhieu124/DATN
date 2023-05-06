@@ -1,0 +1,141 @@
+﻿@model IEnumerable<DuLichV2.Models.EF.Tour>
+@using DuLichV2.Common
+@{
+    ViewBag.Title = "Danh sách tour";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/styles/categories_responsive.css">
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active">
+                        <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>@ViewBag.CateName</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+
+            <div class="sidebar">
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Điểm đến</h5>
+                    </div>
+                    @Html.Action("MenuLeft", "Menu", new { id = ViewBag.CateId})
+                </div>
+
+                <!-- Price Range Filtering -->
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Lọc theo giá</h5>
+                    </div>
+                    <p style="width: 200px">
+                        <input type="text" id="amount" readonly style="font-size: 13px !important; border: 0; color: #f6931f; font-weight: bold; width: 100%;">
+                        <input type="hidden" id="FromAmount" />
+                        <input type="hidden" id="ToAmount" />
+                    </p>
+                    <div id="slider-range"></div>
+                    <div class="filter_button"><span>filter</span></div>
+                </div>
+
+
+            </div>
+
+            <!-- Main Content -->
+
+            <div class="main_content">
+
+                <!-- Products -->
+
+                <div class="products_iso">
+                    <div class="row">
+                        <div class="col">
+
+                            <!-- Product Sorting -->
+
+                            <div class="product_sorting_container product_sorting_container_top">
+                                <ul class="product_sorting">
+                                    <li>
+                                        <span class="type_sorting_text">Mặc định</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_type">
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Mặc định</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Theo giá</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Theo tên</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="pages d-flex flex-row align-items-center">
+                                    @using (Html.BeginForm("TourCategory", "Tours", FormMethod.Get, new { }))
+                                    {
+                                        <div class="input-group">
+                                            @Html.TextBox("searchText", "", new { @class = "form-control", @placeholder = "Nhập tour cần tìm" })
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+
+                            <!-- Product Grid -->
+
+                            <div class="product-grid">
+
+                                <!-- Product 1 -->
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                <div class="product-item @item.TourCategory.Alias">
+                                    <div class="product discount">
+                                        <div class="product_image">
+                                            <img src="@item.Image" alt="">
+                                        </div>
+                                        <div class="favorite favorite_left"></div>
+                                        @if (item.PriceSale != item.Price)
+                                        {
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                                        }
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a href="/chi-tiet/@item.Alias-t@(item.Id)">@item.Name</a></h6>
+                                            @if (item.PriceSale != item.Price)
+                                            {
+                                                <div class="product_price">@Common.FormatNumber(item.PriceSale, 0) đ<span>@Common.FormatNumber(item.Price, 0) đ</span></div>
+                                                <div style="display:none;" class="tour-price">@item.PriceSale</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="product_price">@Common.FormatNumber(item.Price, 0) đ</div>
+                                                <div style="display:none;" class="tour-price">@item.Price</div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">Chọn tour</a></div>
+                                </div>
+                                    }
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/Assets/js/categories_custom.js"></script>
+}
+
